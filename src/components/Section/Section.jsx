@@ -5,31 +5,62 @@ import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
 import PropTypes from 'prop-types';
 
 class Section extends Component {
-    state = {
-            good: 0,
-            neutral: 0,
-            bad: 0
-        }
-    
+  static defaultProps = {
+    initialValue: 0,
+  };
 
+  // static PropTypes = {};
 
+  state = {
+    good: this.props.initialValue,
+    neutral: this.props.initialValue,
+    bad: this.props.initialValue,
+  };
 
-    handleIncrement = () => {
-        this.setState({good: good + 1})
-    }
+  handleIncrementGood = () => {
+    this.setState(prevState => {
+      return { good: prevState.good + 1 };
+    });
+  };
+
+  handleIncrementNeutral = () => {
+    this.setState(prevState => {
+      return { neutral: prevState.neutral + 1 };
+    });
+  };
+
+  handleIncrementBad = () => {
+    this.setState(prevState => {
+      return { bad: prevState.bad + 1 };
+    });
+  };
+
+  countTotalFeedback = () => {
+    const voits = this.state;
+    const values = Object.values(voits);
+    return values.reduce((sum, prev) => prev + sum, 0);
+  };
+
+  countPositiveFeedbackPercentage = total => {
+    const goodFeedback = this.state.good;
+    if (total === 0) return 0;
+    return Math.round((goodFeedback / total) * 100);
+  };
 
   render() {
+    const totalVoits = this.countTotalFeedback();
+    const percentPositiveFeedback =
+      this.countPositiveFeedbackPercentage(totalVoits);
+
     return (
       <div>
         <h2>Please leave feedback</h2>
 
-        <div>
-          <button type="button" onClick={this.handleIncrement}>Good</button>
-          <button type="button">Neutral</button>
-          <button type="button">Bad</button>
-        </div>
-
-        {/* <FeedbackOptions /> */}
+        <FeedbackOptions
+          onIncrementGood={this.handleIncrementGood}
+          onIncrementNeutral={this.handleIncrementNeutral}
+          onIncrementBad={this.handleIncrementBad}
+        />
 
         <h2>Statistics</h2>
         <ul>
@@ -47,11 +78,11 @@ class Section extends Component {
           </li>
           <li>
             <span>Total:</span>
-            <span>0</span>
+            <span>{totalVoits}</span>
           </li>
           <li>
             <span>Positive feedback:</span>
-            <span>0%</span>
+            <span>{percentPositiveFeedback}%</span>
           </li>
         </ul>
       </div>

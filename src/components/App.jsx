@@ -1,10 +1,7 @@
-import Section from "./Section/Section";
+import Section from './Section/Section';
 
 const App = () => {
-  return (
-    <Section />
-      );
- 
+  return <Section />;
 };
 
 export default App;
