@@ -63,7 +63,15 @@ class Section extends Component {
         />
 
         <h2>Statistics</h2>
-        <ul>
+
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          voits={totalVoits}
+          percent={percentPositiveFeedback}
+        />
+        {/* <ul>
           <li>
             <span>Good:</span>
             <span>{this.state.good}</span>
@@ -84,7 +92,7 @@ class Section extends Component {
             <span>Positive feedback:</span>
             <span>{percentPositiveFeedback}%</span>
           </li>
-        </ul>
+        </ul> */}
       </div>
     );
   }
