@@ -3,14 +3,11 @@ import Statistics from 'components/Statistics/Statistics';
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
 import css from './Section.module.css';
 
-// import PropTypes from 'prop-types';
 
 class Section extends Component {
   static defaultProps = {
     initialValue: 0,
   };
-
-  // static PropTypes = {};
 
   state = {
     good: this.props.initialValue,
