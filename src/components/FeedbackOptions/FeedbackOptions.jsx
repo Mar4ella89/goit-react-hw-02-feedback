@@ -8,14 +8,14 @@ const FeedbackOptions = ({
   onIncrementBad,
 }) => {
   return (
-    <div>
-      <button type="button" onClick={onIncrementGood}>
+    <div className={css.btnWrapper}>
+      <button type="button" className={css.btn} onClick={onIncrementGood}>
         Good
       </button>
-      <button type="button" onClick={onIncrementNeutral}>
+      <button type="button" className={css.btn} onClick={onIncrementNeutral}>
         Neutral
       </button>
-      <button type="button" onClick={onIncrementBad}>
+      <button type="button" className={css.btn} onClick={onIncrementBad}>
         Bad
       </button>
     </div>
