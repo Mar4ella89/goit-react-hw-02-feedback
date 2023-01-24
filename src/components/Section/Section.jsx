@@ -3,7 +3,6 @@ import Statistics from 'components/Statistics/Statistics';
 import FeedbackOptions from 'components/FeedbackOptions/FeedbackOptions';
 import css from './Section.module.css';
 
-
 class Section extends Component {
   static defaultProps = {
     initialValue: 0,
@@ -15,23 +14,23 @@ class Section extends Component {
     bad: this.props.initialValue,
   };
 
-  handleIncrementGood = () => {
+  handleIncrement = feedbackName => {
     this.setState(prevState => {
-      return { good: prevState.good + 1 };
+      return { [feedbackName]: prevState[feedbackName] + 1 };
     });
   };
 
-  handleIncrementNeutral = () => {
-    this.setState(prevState => {
-      return { neutral: prevState.neutral + 1 };
-    });
-  };
+  // handleIncrementNeutral = () => {
+  //   this.setState(prevState => {
+  //     return { neutral: prevState.neutral + 1 };
+  //   });
+  // };
 
-  handleIncrementBad = () => {
-    this.setState(prevState => {
-      return { bad: prevState.bad + 1 };
-    });
-  };
+  // handleIncrementBad = () => {
+  //   this.setState(prevState => {
+  //     return { bad: prevState.bad + 1 };
+  //   });
+  // };
 
   countTotalFeedback = () => {
     const voits = this.state;
@@ -54,11 +53,7 @@ class Section extends Component {
       <div className={css.section}>
         <h2>Please leave feedback</h2>
 
-        <FeedbackOptions
-          onIncrementGood={this.handleIncrementGood}
-          onIncrementNeutral={this.handleIncrementNeutral}
-          onIncrementBad={this.handleIncrementBad}
-        />
+        <FeedbackOptions handleIncrement={this.handleIncrement} />
 
         <h2>Statistics</h2>
 
