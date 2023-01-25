@@ -1,6 +1,5 @@
 import React from 'react';
-import { nanoid } from 'nanoid';
-
+import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
 const FeedbackOptions = ({ options, handleIncrement }) => {
@@ -10,7 +9,7 @@ const FeedbackOptions = ({ options, handleIncrement }) => {
         let colorClass = [css.btn, css[item]];
         return (
           <button
-            key={nanoid()}
+            key={item}
             type="button"
             className={colorClass.join(' ')}
             onClick={() => handleIncrement(item)}
@@ -21,6 +20,11 @@ const FeedbackOptions = ({ options, handleIncrement }) => {
       })}
     </div>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  handleIncrement: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
