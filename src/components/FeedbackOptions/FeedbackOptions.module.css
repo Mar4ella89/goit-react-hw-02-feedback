@@ -4,6 +4,7 @@
   border-style: none;
   color: #fff;
   background-color: blue;
+  text-transform: capitalize;
   width: 70px;
   padding-top: 5px;
   padding-bottom: 5px;
