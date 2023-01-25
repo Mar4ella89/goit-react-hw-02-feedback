@@ -1,30 +1,24 @@
 import React from 'react';
+import { nanoid } from 'nanoid';
+
 import css from './FeedbackOptions.module.css';
 
-const FeedbackOptions = ({ handleIncrement }) => {
+const FeedbackOptions = ({ options, handleIncrement }) => {
   return (
     <div className={css.btnWrapper}>
-      <button
-        type="button"
-        className={[css.btn, css.good].join(' ')}
-        onClick={() => handleIncrement('good')}
-      >
-        Good
-      </button>
-      <button
-        type="button"
-        className={[css.btn, css.neutral].join(' ')}
-        onClick={() => handleIncrement('neutral')}
-      >
-        Neutral
-      </button>
-      <button
-        type="button"
-        className={[css.btn, css.bad].join(' ')}
-        onClick={() => handleIncrement('bad')}
-      >
-        Bad
-      </button>
+      {options.map(item => {
+        let colorClass = [css.btn, css[item]];
+        return (
+          <button
+            key={nanoid()}
+            type="button"
+            className={colorClass.join(' ')}
+            onClick={() => handleIncrement(item)}
+          >
+            {item}
+          </button>
+        );
+      })}
     </div>
   );
 };

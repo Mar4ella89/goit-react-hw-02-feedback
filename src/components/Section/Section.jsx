@@ -20,18 +20,6 @@ class Section extends Component {
     });
   };
 
-  // handleIncrementNeutral = () => {
-  //   this.setState(prevState => {
-  //     return { neutral: prevState.neutral + 1 };
-  //   });
-  // };
-
-  // handleIncrementBad = () => {
-  //   this.setState(prevState => {
-  //     return { bad: prevState.bad + 1 };
-  //   });
-  // };
-
   countTotalFeedback = () => {
     const voits = this.state;
     const values = Object.values(voits);
@@ -53,7 +41,10 @@ class Section extends Component {
       <div className={css.section}>
         <h2>Please leave feedback</h2>
 
-        <FeedbackOptions handleIncrement={this.handleIncrement} />
+        <FeedbackOptions
+          options={['good', 'neutral', 'bad']}
+          handleIncrement={this.handleIncrement}
+        />
 
         <h2>Statistics</h2>
 
